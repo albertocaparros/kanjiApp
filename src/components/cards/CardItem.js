@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Strokes from './Strokes';
 import Spinner from '../layout/Spinner';
-import PropTypes from 'prop-types';
+import KanjiContext from '../../context/kanji/kanjiContext';
 
-const CardItem = ({ id, kanji, loading }) => {
+const CardItem = () => {
+  const kanjiContext = useContext(KanjiContext);
+
+  const { id, currentKanji, loading } = kanjiContext;
+
   let videoRef = React.createRef();
 
   function playVideo() {
@@ -22,8 +26,13 @@ const CardItem = ({ id, kanji, loading }) => {
         <div className='grid-2'>
           <div>
             <h4>Kanji number: {id}</h4>
-            <video width='220' poster={kanji.video.poster} ref={videoRef}>
-              <source src={kanji.video.webm} type='video/webm'></source>
+            <video
+              width='220'
+              poster={currentKanji.video.poster}
+              ref={videoRef}
+              onClick={playVideo}
+            >
+              <source src={currentKanji.video.webm} type='video/webm'></source>
             </video>
             <div className='row'>
               <i className='fas fa-pause m' onClick={pauseVideo}></i>
@@ -35,7 +44,7 @@ const CardItem = ({ id, kanji, loading }) => {
               </p>
             </div>
             <div className='row'>
-              {kanji.strokes.images.map(stroke => (
+              {currentKanji.strokes.images.map(stroke => (
                 <Strokes
                   key={stroke[stroke.length - 5]}
                   stroke={stroke}
@@ -46,7 +55,7 @@ const CardItem = ({ id, kanji, loading }) => {
           <div className='text-left lead'>
             <p>
               <strong>Meaning: </strong>
-              {kanji.meaning.english}
+              {currentKanji.meaning.english}
             </p>
           </div>
           <div className='text-left lead'>
@@ -61,9 +70,4 @@ const CardItem = ({ id, kanji, loading }) => {
   }
 };
 
-CardItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  kanji: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired
-};
 export default CardItem;
