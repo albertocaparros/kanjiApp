@@ -410,6 +410,12 @@ table th {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
+
+.btn-group button.active {
+  font-weight: bold;
+  background-color: var(--primary-color);
+}
+
 /* Clear floats (clearfix hack) */
 .btn-group:after {
   content: '';

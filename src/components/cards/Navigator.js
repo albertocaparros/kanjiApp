@@ -4,7 +4,7 @@ import KanjiContext from '../../context/kanji/kanjiContext';
 const Navigator = () => {
   const kanjiContext = useContext(KanjiContext);
 
-  const { id } = kanjiContext;
+  const { id, studyMode } = kanjiContext;
 
   useEffect(() => {
     kanjiContext.loadKanji();
@@ -16,6 +16,10 @@ const Navigator = () => {
 
   const nextKanji = () => {
     kanjiContext.setID(id + 1);
+  };
+
+  const setMode = mode => {
+    kanjiContext.setStudyMode(mode);
   };
 
   return (
@@ -44,10 +48,30 @@ const Navigator = () => {
         </p>
         <div>
           <div className='btn-group'>
-            <button>Full</button>
-            <button>Kanji</button>
-            <button>Meaning</button>
-            <button>Story</button>
+            <button
+              className={`${studyMode === 'full' ? 'active' : ''}`}
+              onClick={() => setMode('full')}
+            >
+              Full
+            </button>
+            <button
+              className={`${studyMode === 'kanji' ? 'active' : ''}`}
+              onClick={() => setMode('kanji')}
+            >
+              Kanji
+            </button>
+            <button
+              className={`${studyMode === 'meaning' ? 'active' : ''}`}
+              onClick={() => setMode('meaning')}
+            >
+              Meaning
+            </button>
+            <button
+              className={`${studyMode === 'story' ? 'active' : ''}`}
+              onClick={() => setMode('story')}
+            >
+              Story
+            </button>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { LOAD_KANJI, SET_LOADING, SET_ID } from '../types';
+import { LOAD_KANJI, SET_LOADING, SET_ID, SET_STUDYMODE } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -17,6 +17,11 @@ export default (state, action) => {
       return {
         ...state,
         id: action.payload
+      };
+    case SET_STUDYMODE:
+      return {
+        ...state,
+        studyMode: action.payload
       };
     default:
       return state;

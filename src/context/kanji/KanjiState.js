@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import KanjiContext from './kanjiContext';
 import KanjiReducer from './kanjiReducer';
-import { LOAD_KANJI, SET_LOADING, SET_ID } from '../types';
+import { LOAD_KANJI, SET_LOADING, SET_ID, SET_STUDYMODE } from '../types';
 
 const KanjiState = props => {
   const heisigList = [
@@ -61,6 +61,10 @@ const KanjiState = props => {
   //Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
+  //Set Study Mode
+  const setStudyMode = newMode =>
+    dispatch({ type: SET_STUDYMODE, payload: newMode });
+
   return (
     <KanjiContext.Provider
       value={{
@@ -69,7 +73,8 @@ const KanjiState = props => {
         loading: state.loading,
         studyMode: state.studyMode,
         loadKanji,
-        setID
+        setID,
+        setStudyMode
       }}
     >
       {props.children}
