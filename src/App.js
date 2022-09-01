@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import CardItem from './components/cards/CardItem';
 import Navigator from './components/cards/Navigator';
 import KanjiState from './context/kanji/KanjiState';
+require('dotenv').config();
 
 class App extends React.Component {
   render() {

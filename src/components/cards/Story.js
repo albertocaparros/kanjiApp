@@ -10,7 +10,7 @@ const Story = () => {
     <Fragment>
       <div className='text-left lead'>
         <strong>Story: </strong>
-        <textarea></textarea>
+        <textarea>{currentKanji.toString()}</textarea>
       </div>
     </Fragment>
   );
